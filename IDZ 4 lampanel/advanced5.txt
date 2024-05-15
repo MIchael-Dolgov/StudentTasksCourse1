@@ -1,0 +1,21 @@
+system 0
+mov 0,R1
+mov @name, R0
+mov 7,R2
+cycle1:
+    movb (R0),R1
+    push R1
+    add 1, R0
+    sub 1, R2
+jnz cycle1
+mov @name, R0
+mov 7,R2
+cycle2:
+    pop R1
+    mov R1,(R0)
+    add 1,R0
+    sub 1,R2
+jnz cycle2
+stop
+name:
+data "Michael"

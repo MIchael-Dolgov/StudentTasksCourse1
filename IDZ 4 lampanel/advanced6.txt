@@ -1,0 +1,94 @@
+system 0
+mov @fr1, R0
+system 5
+mov @fr2, R0
+system 5
+mov @fr3, R0
+system 5
+mov @fr4, R0
+system 5
+mov @fr5, R0
+system 5
+mov @fr6, R0
+system 5
+mov @fr7, R0
+system 5
+mov @fr8, R0
+system 5
+stop
+fr1:
+data 8000
+data f100
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+fr2:
+data 0000
+data f900
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+fr3:
+data 0000
+data 7d00
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+data 0000
+fr4:
+data 0000
+data 3f00
+data 0000
+data 0000
+data 100
+data 0000
+data 0000
+data 0000
+fr5:
+data 0000
+data 1F00
+data 100
+data 0000
+data 100
+data 0000
+data 0000
+data 0000
+fr6:
+data 0000
+data F02
+data 100
+data 100
+data 100
+data 000
+data 0000
+data 0000
+fr7:
+data 0000
+data 702
+data 100
+data 100
+data 100
+data 100
+data 000
+data 0000
+fr8:
+data 0000
+data 302
+data 100
+data 100
+data 100
+data 100
+data 100
+data 0000
+
+
+
+

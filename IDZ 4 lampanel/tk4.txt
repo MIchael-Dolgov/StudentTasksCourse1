@@ -1,0 +1,18 @@
+system 0 ; внутренняя команда очистки панели
+mov @FIO,R0
+system 5 ; команда вывода на панель
+mov 8,R1
+cycle:
+    system 4
+    sub 1,R1
+jnz cycle
+stop
+;Для "И" места мало осталось
+FIO:
+data 2229
+data 5369
+data 52a9
+data 522b
+data 522d
+data fa29
+data 8a29

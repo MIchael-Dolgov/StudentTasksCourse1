@@ -1,0 +1,23 @@
+CALL F
+STOP
+F:
+    MOV 0, R3
+    MOV C, R0
+    PUSH R2
+      
+    MOV B, R0
+    PUSH R1
+    MOV A, R0
+    PUSH R0
+
+    ;первым зашёл первым вышел
+    POP R3
+    SHL 4, R3
+
+    POP R0
+    ADD R0, R3
+    SHL 4, R3
+
+    POP R0
+    ADD R0, R3
+RET

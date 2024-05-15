@@ -1,0 +1,65 @@
+system 0
+mov @N4,R0
+system 5
+mov @N3,R0
+system 5
+mov @N2,R0
+system 5
+mov @N1,R0
+system 5
+mov @OVS, R0
+system 5
+system 5
+mov 4,R1
+cycle:
+    system 6
+    sub 1,R1
+jnz cycle
+stop
+
+;Сделаем вид, что др не 29, а 4-го числа ;(
+N1:
+data 0000
+data 80
+data 180
+data 280
+data 80
+data 80
+data 3C0
+data 0000
+N2:
+data 0000
+data 180
+data 240
+data 80
+data 100
+data 200
+data 3C0
+data 0000
+N3:
+data 0
+data 380
+data 40
+data 40
+data 380
+data 40
+data 380
+data 0        
+N4:
+data 0
+data 240
+data 240
+data 3c0
+data 40
+data 40
+data 0
+
+OVS:
+data 0000
+data 338C
+data 4AD2
+data 4B90
+data 4B90
+data 4AD2
+data 338C
+data 0000        

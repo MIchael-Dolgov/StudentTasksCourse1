@@ -1,0 +1,14 @@
+mov 0, R0
+mov @a, R1
+add (R1), R0
+mov @b, R1
+add (R1), R0
+mov @sum, R1
+mov R0, (R1)
+stop
+a:
+    data 1234
+b:
+    data 4321
+sum:
+    data 0

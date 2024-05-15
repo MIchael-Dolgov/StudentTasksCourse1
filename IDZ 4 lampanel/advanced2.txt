@@ -1,0 +1,15 @@
+mov 0,R0
+mov 0,R1
+mov 0,R2
+mov @init, R0
+mov 8, R1
+cycle:
+    movb (R0),R2
+    xor 20,R2
+    movb R2,(R0)
+    add 1,R0
+    sub 1,R1
+jnz cycle
+stop
+init:
+    data "DolgovMI"
