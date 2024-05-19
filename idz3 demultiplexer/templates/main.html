@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8-bit adder</title>
+<link rel="stylesheet" href="static/styles.css"> 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggles = document.querySelectorAll('.toggle-switch input');
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener('change', function() {
+            const sliderId = this.id;
+            const sliderState = this.checked;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/update_toggle', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.status === 'success') {
+                            console.log(response.message);
+
+                            // Обновляем слайдеры в правом флекс-боксе на основе массива
+                            response.rightSliders.forEach((state, index) => {
+                                document.getElementById(`displaytoggle${index}`).checked = state === 1;
+                            });
+                        } else {
+                            console.error(response.message);
+                            document.getElementById(sliderId).checked = !sliderState;
+                        }
+                    } else {
+                        console.error('Request failed');
+                        document.getElementById(sliderId).checked = !sliderState;
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({ id: sliderId, state: sliderState }));
+        });
+    });
+});
+  </script>
+</head>
+<body>
+    <div class="container">
+        <div class="left-vertical">
+          {% for i in range(1) %}
+          <label class="toggle-switch">
+            <input type="checkbox" id="num0toggle{{i}}">
+            <span class="slider"></span>
+            <h3 class="num" id="num{{i}}">Din</h3>
+          </label>
+          {% endfor %}
+         
+        </div>
+        <div class="center-square">
+          <img src="static/images/3-to-8-DEMUX.jpg" alt="" width="500" height="500" />
+        </div>
+        <div class="right-vertical">
+          {% for i in range(8) | reverse%}
+          <label class="toggle-switch" >
+            <input type="checkbox" disabled id="displaytoggle{{i}}">
+            <span class="slider"></span>
+            <h3 class="num" id="num{{i}}{{i}}{{i}}">{{7-i}}</h3>
+          </label>
+          {% endfor %}
+        </div>
+        <div class="bottom-horizontal">
+         
+          {% for i in range(3) | reverse%}
+          <label class="toggle-switch">
+            <input type="checkbox" id="num1toggle{{i}}">
+            <span class="slider"></span>
+            <h3 class="num" id="num{{i}}">{{i}}</h3>
+          </label>
+          {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+  

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8-bit adder</title>
+<link rel="stylesheet" href="static/styles.css"> 
+</head>
+<body>
+
+<div class="label"><H1>8-bit adder</H1></div>
+
+<div class="mode" style="text-align: center; margin: 10px">
+  <H2>Mode: 
+    <input type="checkbox" id="btn-checkbox" class="btn-checkbox">
+    <label for="btn-checkbox" class="btn"></label>
+  </H2>
+</div>
+
+<div class="toggle-container">
+  {% for i in range(8) | reverse%}
+  <label class="toggle-switch">
+    <input type="checkbox" id="num0toggle{{7-i}}">
+    <span class="slider"></span>
+    <h3 class="num" id="num{{7-i}}">{{2**i}}</h3>
+  </label>
+  {% endfor %}
+  <h4 id="int10_0">0</h4>
+</div>
+
+
+<div class="toggle-container">
+  {% for i in range(8) | reverse%}
+  <label class="toggle-switch">
+    <input type="checkbox"  id="num1toggle{{7-i}}">
+    <span class="slider"></span>
+    <h3 class="num" id="num{{7-i}}{{7-i}}">{{2**i}}</h3>
+  </label>
+  {% endfor %}
+  <h4 id="int10_1">0</h4>
+</div>
+<div style="text-align: center;"><h2>=</h2></div>
+<div class="toggle-container">
+  {% for i in range(8) %}
+  <label class="toggle-switch" >
+    <input type="checkbox" disabled id="displaytoggle{{i}}">
+    <span class="slider"></span>
+    <h3 class="num" id="num{{i}}{{i}}{{i}}">{{2**(7-i)}}</h3>
+  </label>
+  {% endfor %}
+  <h4 id="int10_2">0</h4>
+</div>
+<div style="text-align: center; margin-bottom: 20px">  
+  <label class="toggle-switch" >
+  <input type="checkbox" disabled id="overbufferedtoggle">
+  <span class="slider"></span>
+  <h3 class="num">C_o</h3>
+  </label>
+</div>
+<div style="text-align: center;"><a>Dolgov Michael 2024</a></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="static/js/script.js"></script>
+</body>
+</html>

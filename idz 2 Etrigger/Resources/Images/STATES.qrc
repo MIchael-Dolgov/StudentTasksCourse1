@@ -1,0 +1,21 @@
+<RCC>
+  <qresource prefix="states">
+    <file>STATE0001.svg</file>
+    <file>STATE0010.svg</file>
+    <file>STATE0101.svg</file>
+    <file>STATE1010.svg</file>
+    <file>STATE1101.svg</file>
+    <file>STATE1110.svg</file>
+    <file>STATE0001.svg</file>
+    <file>STATE0010.svg</file>
+    <file>STATE0101.svg</file>
+    <file>STATE1010.svg</file>
+    <file>STATE1101.svg</file>
+    <file>STATE0001.svg</file>
+    <file>STATE0010.svg</file>
+    <file>STATE0101.svg</file>
+    <file>STATE1010.svg</file>
+    <file>STATE1101.svg</file>
+    <file>STATE1110.svg</file>
+  </qresource>
+</RCC>
