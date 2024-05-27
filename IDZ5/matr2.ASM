@@ -41,17 +41,17 @@ Start:
 		loop Inizialization
 
 	;
-	mov ax, 1
-	mov bx, 2
+	mov ax, 0
+	mov bx, 0
+	mov dx, widt
 	mov min, 32767
 
 	mov cx, height
 	line:
 		push cx
-		mov cx, widt
-		jcxz escape
-		sub cx, ax
-		jcxz escape
+		mov cx, 0
+		add cx, ax
+		jcxz new
 		items:
 			push ax
 			mov ax, matr[bx]
@@ -64,12 +64,14 @@ Start:
 			newline
 			add bx, 2
 			loop items
+		new:
+		add bx, dx
+		add bx, dx
+		sub bx, ax
+		sub bx, ax
 		add ax, 1
-		add bx, ax
-		add bx, ax
 		pop cx
-		loopnz line
-	escape:
+		loop line
 
 	;
 	mov bx, 0

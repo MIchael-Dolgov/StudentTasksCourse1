@@ -44,7 +44,7 @@ Start:
 
 	; Поиск максимального
 	mov ax, 1
-	mov bx, 0
+	mov bx, 2
 	mov max, -32768
 
 	mov cx, height
@@ -66,9 +66,9 @@ Start:
 			newline
 			add bx, 2
 			loop items
-		add bx, ax
-		add bx, ax
 		add ax, 1
+		add bx, ax
+		add bx, ax
 		pop cx
 		loopnz line
 	escape:
