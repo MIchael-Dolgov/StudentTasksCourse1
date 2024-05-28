@@ -9,7 +9,7 @@ STACK_SEG SEGMENT STACK 'STACK'
 STACK_SEG ENDS
 
 DATA SEGMENT
-	max dw ?
+	min dw ?
 	matr dw 100 dup(?)
 	height dw ?
 	widt dw ?
@@ -51,7 +51,7 @@ Start:
 		add bx, widt
 		loop heig
 	sub bx, 2
-	mov max, -32768
+	mov min, 32767
 
 	mov cx, height
 	line:
@@ -63,9 +63,10 @@ Start:
 		items:
 			push ax
 			mov ax, matr[bx]
-			cmp ax, max
-			jl skip
-			mov max, ax
+			cmp ax, min
+			jge skip
+			outint ax
+			mov min, ax
 		skip:
 			pop ax
 			outint bx, 10
@@ -97,7 +98,7 @@ Start:
 
 	newline
 	; Вывод числа
-	outint max,4
+	outint min,4
 ;=========================================================
 	pop	ax
 	pop	ds
