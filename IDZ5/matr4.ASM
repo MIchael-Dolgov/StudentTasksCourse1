@@ -1,5 +1,5 @@
 ;Работает!
-;Максимальный элемент выше главной диагонали.
+;Количество четных элементов ниже главной диагонали.
 INCLUDE IO.ASM
 
 MODEL COMPACT
@@ -9,7 +9,7 @@ STACK_SEG SEGMENT STACK 'STACK'
 STACK_SEG ENDS
 
 DATA SEGMENT
-	max dw ?
+	cnt dw ?
 	matr dw 100 dup(?)
 	height dw ?
 	widt dw ?
@@ -42,45 +42,46 @@ Start:
 		add bx, 2 ;сдвиг по байтам
 		loop Inizialization
 
-	; Поиск максимального
+	;Количество четных элементов ниже главной диагонали.
 	mov ax, 1
 	mov bx, 0
+	mov cnt, 0
 	mov cx, height
-	heig:
+	repp:
 		add bx, widt
 		add bx, widt
-		loop heig
-	sub bx, 2
-	mov max, -32768
+		loop repp
+	sub bx, 4
 
 	mov cx, height
+	sub cx, 1
+	jcxz escape
 	line:
 		push cx
 		mov cx, widt
-		jcxz escape
 		sub cx, ax
 		jcxz escape
 		items:
 			push ax
 			mov ax, matr[bx]
-			cmp ax, max
-			jl skip
-			mov max, ax
+			test ax, 1    ; Побитовое AND между AX и 1
+			jnz skip
+			outint ax
+			inc cnt
 		skip:
 			pop ax
 			outint bx, 10
-			newline
 			sub bx, 2
+			newline
 			loop items
-		sub bx, ax
-		sub bx, ax
 		add ax, 1
+		sub bx, ax
+		sub bx, ax
 		pop cx
-		loopnz line
+		loop line
 	escape:
 
 	;Выводит матрицу на экран и
-	;Максимальный элемент выше главной диагонали.
 	mov bx, 0
 	mov cx, height
 	ShowWidth:
@@ -97,7 +98,7 @@ Start:
 
 	newline
 	; Вывод числа
-	outint max,4
+	outint cnt,4
 ;=========================================================
 	pop	ax
 	pop	ds

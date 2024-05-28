@@ -1,5 +1,4 @@
-;Работает!
-;Максимальный элемент выше главной диагонали.
+
 INCLUDE IO.ASM
 
 MODEL COMPACT
@@ -9,7 +8,7 @@ STACK_SEG SEGMENT STACK 'STACK'
 STACK_SEG ENDS
 
 DATA SEGMENT
-	max dw ?
+	cnt dw ?
 	matr dw 100 dup(?)
 	height dw ?
 	widt dw ?
@@ -20,8 +19,7 @@ CODE SEGMENT
 ASSUME SS:STACK_SEG,DS:DATA,CS:CODE   
 
 Start:
-	push	ds ;добавляем в стек, т.к данные регистры проца могли использоваться другой программой, поэтому мы кидаем значения в стек
-	push	ax
+	push	ds ;
 	mov	ax, data
 	mov	ds, ax
 ;==========================CODE=============================
@@ -35,23 +33,17 @@ Start:
 		add ax, height
 		loop repet
 
-	; Ввод значений
+	; 
 	mov cx, ax
 	Inizialization:
 		inint matr[bx]
-		add bx, 2 ;сдвиг по байтам
+		add bx, 2 ;
 		loop Inizialization
 
-	; Поиск максимального
+	;
 	mov ax, 1
 	mov bx, 0
-	mov cx, height
-	heig:
-		add bx, widt
-		add bx, widt
-		loop heig
-	sub bx, 2
-	mov max, -32768
+	mov cnt, 0
 
 	mov cx, height
 	line:
@@ -63,24 +55,23 @@ Start:
 		items:
 			push ax
 			mov ax, matr[bx]
-			cmp ax, max
-			jl skip
-			mov max, ax
+			test ax, ax     ; Проверить знак числа в AX
+			jns skip
+			inc cnt
 		skip:
 			pop ax
 			outint bx, 10
 			newline
-			sub bx, 2
+			add bx, 2
 			loop items
-		sub bx, ax
-		sub bx, ax
+		add bx, ax
+		add bx, ax
 		add ax, 1
 		pop cx
 		loopnz line
 	escape:
 
-	;Выводит матрицу на экран и
-	;Максимальный элемент выше главной диагонали.
+	;
 	mov bx, 0
 	mov cx, height
 	ShowWidth:
@@ -96,8 +87,8 @@ Start:
 	loop ShowWidth
 
 	newline
-	; Вывод числа
-	outint max,4
+	;
+	outint cnt,4
 ;=========================================================
 	pop	ax
 	pop	ds
